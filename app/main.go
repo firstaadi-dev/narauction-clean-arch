@@ -15,6 +15,11 @@ func main() {
 	barangRepo := repository.NewPsqlBarangRepository(db)
 	barangUcase := usecase.NewBarangUsecase(barangRepo)
 
+	eventRepo := repository.NewPsqlEventRepository(db)
+	eventUcase := usecase.NewEventUsecase(eventRepo)
+
 	delivery.NewBarangHandler(e, barangUcase)
+	delivery.NewEventHandler(e, eventUcase)
+
 	e.Start(":8080")
 }
