@@ -1,17 +1,18 @@
 package domain
 
 import (
-	"github.com/lib/pq"
 	"time"
+
+	"github.com/lib/pq"
 )
 
 type Barang struct {
 	ID             uint           `gorm:"primarykey" json:"id,omitempty"`
-	CreatedAt      time.Time      `json:"createdAt" json:"createdAt"`
+	CreatedAt      time.Time      `json:"createdAt"`
 	UpdatedAt      time.Time      `json:"updatedAt"`
 	DeletedAt      *time.Time     `json:"deletedAt"`
 	Lot            string         `json:"lot,omitempty"`
-	NamaBarang     string         `json:"namaBarang" json:"namaBarang,omitempty"`
+	NamaBarang     string         `json:"namaBarang,omitempty"`
 	Foto           pq.StringArray `gorm:"type:varchar[]" json:"foto,omitempty"`
 	TahunPembuatan int            `json:"tahunPembuatan,omitempty"`
 	NamaPembuat    string         `json:"namaPembuat,omitempty"`
@@ -31,7 +32,7 @@ type Barang struct {
 
 type BarangMin struct {
 	ID             uint       `gorm:"primarykey" json:"id,omitempty"`
-	CreatedAt      time.Time  `json:"createdAt" json:"createdAt"`
+	CreatedAt      time.Time  `json:"createdAt"`
 	UpdatedAt      time.Time  `json:"updatedAt"`
 	DeletedAt      *time.Time `json:"deletedAt"`
 	NamaBarang     string     `json:"namaBarang,omitempty"`

@@ -7,18 +7,30 @@ type EventUsecase struct {
 }
 
 // Delete implements domain.EventUsecase
-func (*EventUsecase) Delete(id uint) error {
-	panic("unimplemented")
+func (e *EventUsecase) Delete(id uint) error {
+	err := e.EventRepository.Delete(id)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // Store implements domain.EventUsecase
-func (*EventUsecase) Store(event domain.Event) error {
-	panic("unimplemented")
+func (e *EventUsecase) Store(event domain.Event) error {
+	err := e.EventRepository.Store(event)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // Update implements domain.EventUsecase
-func (*EventUsecase) Update(id uint, event domain.Event) error {
-	panic("unimplemented")
+func (e *EventUsecase) Update(id uint, event domain.Event) error {
+	err := e.EventRepository.Update(id, event)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 // GetUpcoming implements domain.EventUsecase

@@ -5,7 +5,9 @@ import (
 	"strconv"
 
 	"github.com/firstaadi-dev/narauction-clean-arch/domain"
+	"github.com/firstaadi-dev/narauction-clean-arch/utils"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 type BarangHandler struct {
@@ -92,8 +94,8 @@ func NewBarangHandler(r *echo.Echo, us domain.BarangUsecase) {
 	}
 	r.GET("/barang", handler.FindBarangs)
 	r.GET("/barang/:id", handler.GetBarangById)
-	r.POST("/barang", handler.AddBarang)
-	r.PUT("/barang/:id", handler.EditBarang)
-	r.DELETE("/barang/:id", handler.DeleteBarang)
+	r.POST("/barang", handler.AddBarang, middleware.BasicAuth(utils.BasicAuth))
+	r.PUT("/barang/:id", handler.EditBarang, middleware.BasicAuth(utils.BasicAuth))
+	r.DELETE("/barang/:id", handler.DeleteBarang, middleware.BasicAuth(utils.BasicAuth))
 	r.GET("/event/barang/:eventId", handler.GetBarangByEventId)
 }

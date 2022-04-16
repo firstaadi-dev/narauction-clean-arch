@@ -15,5 +15,6 @@ func DatabaseConnect() *gorm.DB {
 	db, _ := gorm.Open(postgres.Open(DSN), &gorm.Config{})
 	db.AutoMigrate(&domain.Barang{})
 	db.AutoMigrate(&domain.Event{})
+	db.AutoMigrate(&domain.Credential{})
 	return db
 }
