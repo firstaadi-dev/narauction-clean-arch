@@ -16,10 +16,20 @@ func (h EventHandler) FindEvent(c echo.Context) error {
 	}
 	return c.JSON(200, event)
 }
+
+func (h EventHandler) UpcomingEvent(c echo.Context) error {
+	event, err := h.EventUsecase.GetUpcoming()
+	if err != nil {
+		return err
+	}
+	return c.JSON(200, event)
+}
+
 func NewEventHandler(r *echo.Echo, us domain.EventUsecase) {
 	handler := &EventHandler{
 		EventUsecase: us,
 	}
 
 	r.GET("/event", handler.FindEvent)
+	r.GET("/event/upcoming", handler.UpcomingEvent)
 }
