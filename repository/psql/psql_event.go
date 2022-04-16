@@ -83,7 +83,9 @@ func (p *psqlEventRepository) GetFotoAndCount(id uint) (res *domain.UpcomingEven
 	result := p.DB.Where("event_id = ?", id).Find(&barang)
 	ue.ItemCount = int(result.RowsAffected)
 	for _, v := range barang {
-		fl = append(fl, v.Foto[0])
+		if len(fl) < 5 {
+			fl = append(fl, v.Foto[0])
+		}
 	}
 	ue.FotoItem = fl
 	return &ue

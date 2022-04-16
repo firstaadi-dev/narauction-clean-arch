@@ -2,34 +2,40 @@ package domain
 
 import (
 	"github.com/lib/pq"
-	"gorm.io/gorm"
+	"time"
 )
 
 type Barang struct {
-	gorm.Model
-	Lot            string
-	NamaBarang     string
-	Foto           pq.StringArray `gorm:"type:varchar[]"`
-	TahunPembuatan int
-	NamaPembuat    string
-	DescId         string
-	DescEn         string
-	PriceRange     pq.Int64Array `gorm:"type:integer[]"`
-	Size           pq.Int64Array `gorm:"type:integer[]"`
-	Tipe           string
-	EventID        uint
-	AsalDaerah     string
-	DyeType        string
-	HargaAwal      int
-	UrlThumbnail   pq.StringArray `gorm:"type:varchar[]"`
-	IsAvailable    bool
+	ID             uint           `gorm:"primarykey" json:"id,omitempty"`
+	CreatedAt      time.Time      `json:"createdAt" json:"createdAt"`
+	UpdatedAt      time.Time      `json:"updatedAt"`
+	DeletedAt      *time.Time     `json:"deletedAt"`
+	Lot            string         `json:"lot,omitempty"`
+	NamaBarang     string         `json:"namaBarang" json:"namaBarang,omitempty"`
+	Foto           pq.StringArray `gorm:"type:varchar[]" json:"foto,omitempty"`
+	TahunPembuatan int            `json:"tahunPembuatan,omitempty"`
+	NamaPembuat    string         `json:"namaPembuat,omitempty"`
+	DescId         string         `json:"descId,omitempty"`
+	DescEn         string         `json:"descEn,omitempty"`
+	PriceRange     pq.Int64Array  `gorm:"type:integer[]" json:"priceRange,omitempty"`
+	Size           pq.Int64Array  `gorm:"type:integer[]" json:"size,omitempty"`
+	Tipe           string         `json:"tipe,omitempty"`
+	EventID        uint           `json:"eventID,omitempty"`
+	AsalDaerah     string         `json:"asalDaerah,omitempty"`
+	DyeType        string         `json:"dyeType,omitempty"`
+	HargaAwal      int            `json:"hargaAwal,omitempty"`
+	UrlThumbnail   pq.StringArray `gorm:"type:varchar[]" json:"urlThumbnail,omitempty"`
+	IsAvailable    bool           `json:"isAvailable,omitempty"`
 	//Event          Event
 }
 
 type BarangMin struct {
-	gorm.Model
-	NamaBarang     string
-	TahunPembuatan int
+	ID             uint       `gorm:"primarykey" json:"id,omitempty"`
+	CreatedAt      time.Time  `json:"createdAt" json:"createdAt"`
+	UpdatedAt      time.Time  `json:"updatedAt"`
+	DeletedAt      *time.Time `json:"deletedAt"`
+	NamaBarang     string     `json:"namaBarang,omitempty"`
+	TahunPembuatan int        `json:"tahunPembuatan,omitempty"`
 }
 
 type BarangUsecase interface {

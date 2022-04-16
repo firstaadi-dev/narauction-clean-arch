@@ -4,25 +4,27 @@ import (
 	"time"
 
 	"github.com/lib/pq"
-	"gorm.io/gorm"
 )
 
 type Event struct {
-	gorm.Model
-	Name      string
-	Date      time.Time
-	DescId    string
-	DescEn    string
-	OpeningId string
-	OpeningEn string
-	Foto      pq.StringArray `gorm:"type:varchar[]"`
+	ID        uint           `gorm:"primarykey" json:"id,omitempty"`
+	CreatedAt time.Time      `json:"createdAt" json:"createdAt"`
+	UpdatedAt time.Time      `json:"updatedAt"`
+	DeletedAt *time.Time     `json:"deletedAt"`
+	Name      string         `json:"name,omitempty" json:"name,omitempty"`
+	Date      time.Time      `json:"date" json:"date"`
+	DescId    string         `json:"descId,omitempty" json:"descId,omitempty"`
+	DescEn    string         `json:"descEn,omitempty" json:"descEn,omitempty"`
+	OpeningId string         `json:"openingId,omitempty" json:"openingId,omitempty"`
+	OpeningEn string         `json:"openingEn,omitempty" json:"openingEn,omitempty"`
+	Foto      pq.StringArray `gorm:"type:varchar[]" json:"foto,omitempty" json:"foto,omitempty"`
 }
 type UpcomingEvent struct {
-	Event     Event
-	DayDelta  int
-	Status    string
-	ItemCount int
-	FotoItem  pq.StringArray `gorm:"type:varchar[]"`
+	Event     Event          `json:"event"`
+	DayDelta  int            `json:"dayDelta,omitempty"`
+	Status    string         `json:"status,omitempty"`
+	ItemCount int            `json:"itemCount,omitempty"`
+	FotoItem  pq.StringArray `gorm:"type:varchar[]" json:"fotoItem,omitempty"`
 }
 
 type EventUsecase interface {
