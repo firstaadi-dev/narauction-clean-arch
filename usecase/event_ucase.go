@@ -6,6 +6,15 @@ type EventUsecase struct {
 	EventRepository domain.EventRepository
 }
 
+// GetById implements domain.EventUsecase
+func (e *EventUsecase) GetById(id uint) (*domain.Event, error) {
+	res, err := e.EventRepository.GetById(id)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
 // Delete implements domain.EventUsecase
 func (e *EventUsecase) Delete(id uint) error {
 	err := e.EventRepository.Delete(id)

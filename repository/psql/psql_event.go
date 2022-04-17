@@ -11,10 +11,20 @@ type psqlEventRepository struct {
 	DB *gorm.DB
 }
 
+// GetById implements domain.EventRepository
+func (p *psqlEventRepository) GetById(id uint) (res *domain.Event, err error) {
+	var event domain.Event
+	err = p.DB.First(&event, id).Error
+	if err != nil {
+		return nil, err
+	}
+	return &event, nil
+}
+
 // Fetch implements domain.EventRepository
 func (p *psqlEventRepository) Fetch() (res []domain.Event, err error) {
 	event := make([]domain.Event, 0)
-	p.DB.Find(&event)
+	p.DB.Order("date desc").Find(&event)
 	return event, nil
 }
 

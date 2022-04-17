@@ -7,36 +7,36 @@ import (
 )
 
 type Barang struct {
-	ID             uint           `gorm:"primarykey" json:"id,omitempty"`
+	ID             uint           `gorm:"primarykey" json:"id"`
 	CreatedAt      time.Time      `json:"createdAt"`
 	UpdatedAt      time.Time      `json:"updatedAt"`
 	DeletedAt      *time.Time     `json:"deletedAt"`
-	Lot            string         `json:"lot,omitempty"`
-	NamaBarang     string         `json:"namaBarang,omitempty"`
-	Foto           pq.StringArray `gorm:"type:varchar[]" json:"foto,omitempty"`
-	TahunPembuatan int            `json:"tahunPembuatan,omitempty"`
-	NamaPembuat    string         `json:"namaPembuat,omitempty"`
-	DescId         string         `json:"descId,omitempty"`
-	DescEn         string         `json:"descEn,omitempty"`
-	PriceRange     pq.Int64Array  `gorm:"type:integer[]" json:"priceRange,omitempty"`
-	Size           pq.Int64Array  `gorm:"type:integer[]" json:"size,omitempty"`
-	Tipe           string         `json:"tipe,omitempty"`
-	EventID        uint           `json:"eventID,omitempty"`
-	AsalDaerah     string         `json:"asalDaerah,omitempty"`
-	DyeType        string         `json:"dyeType,omitempty"`
-	HargaAwal      int            `json:"hargaAwal,omitempty"`
-	UrlThumbnail   pq.StringArray `gorm:"type:varchar[]" json:"urlThumbnail,omitempty"`
-	IsAvailable    bool           `json:"isAvailable,omitempty"`
+	Lot            string         `json:"lot"`
+	NamaBarang     string         `json:"namaBarang"`
+	Foto           pq.StringArray `gorm:"type:varchar[]" json:"foto"`
+	TahunPembuatan int            `json:"tahunPembuatan"`
+	NamaPembuat    string         `json:"namaPembuat"`
+	DescId         string         `json:"descId"`
+	DescEn         string         `json:"descEn"`
+	PriceRange     pq.Int64Array  `gorm:"type:integer[]" json:"priceRange"`
+	Size           pq.Int64Array  `gorm:"type:integer[]" json:"size"`
+	Tipe           string         `json:"tipe"`
+	EventID        uint           `json:"eventID"`
+	AsalDaerah     string         `json:"asalDaerah"`
+	DyeType        string         `json:"dyeType"`
+	HargaAwal      int            `json:"hargaAwal"`
+	UrlThumbnail   pq.StringArray `gorm:"type:varchar[]" json:"urlThumbnail"`
+	IsAvailable    bool           `json:"isAvailable"`
 	//Event          Event
 }
 
 type BarangMin struct {
-	ID             uint       `gorm:"primarykey" json:"id,omitempty"`
+	ID             uint       `gorm:"primarykey" json:"id"`
 	CreatedAt      time.Time  `json:"createdAt"`
 	UpdatedAt      time.Time  `json:"updatedAt"`
 	DeletedAt      *time.Time `json:"deletedAt"`
-	NamaBarang     string     `json:"namaBarang,omitempty"`
-	TahunPembuatan int        `json:"tahunPembuatan,omitempty"`
+	NamaBarang     string     `json:"namaBarang"`
+	TahunPembuatan int        `json:"tahunPembuatan"`
 }
 
 type BarangUsecase interface {

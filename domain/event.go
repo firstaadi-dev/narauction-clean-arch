@@ -29,6 +29,7 @@ type UpcomingEvent struct {
 
 type EventUsecase interface {
 	Fetch() ([]Event, error)
+	GetById(id uint) (*Event, error)
 	GetUpcoming() (*UpcomingEvent, error)
 	Store(event Event) error
 	Update(id uint, event Event) error
@@ -37,6 +38,7 @@ type EventUsecase interface {
 
 type EventRepository interface {
 	Fetch() (res []Event, err error)
+	GetById(id uint) (res *Event, err error)
 	GetUpcoming() (res *UpcomingEvent, err error)
 	GetFotoAndCount(id uint) (res *UpcomingEvent)
 	GenerateUpcoming(e Event) (res *UpcomingEvent)

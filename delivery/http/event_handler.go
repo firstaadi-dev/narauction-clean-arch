@@ -22,6 +22,18 @@ func (h EventHandler) FindEvent(c echo.Context) error {
 	return c.JSON(200, event)
 }
 
+func (h EventHandler) GetEventById(c echo.Context) error {
+	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
+	if err != nil {
+		return err
+	}
+	event, err := h.EventUsecase.GetById(uint(id))
+	if err != nil {
+		return err
+	}
+	return c.JSON(200, event)
+}
+
 func (h EventHandler) UpcomingEvent(c echo.Context) error {
 	event, err := h.EventUsecase.GetUpcoming()
 	if err != nil {
@@ -78,6 +90,7 @@ func NewEventHandler(r *echo.Echo, us domain.EventUsecase) {
 	}
 
 	r.GET("/event", handler.FindEvent)
+	r.GET("/event/:id", handler.GetEventById)
 	r.GET("/event/upcoming", handler.UpcomingEvent)
 	r.POST("/event", handler.AddEvent, middleware.BasicAuth(utils.BasicAuth))
 	r.PUT("/event/:id", handler.EditEvent, middleware.BasicAuth(utils.BasicAuth))

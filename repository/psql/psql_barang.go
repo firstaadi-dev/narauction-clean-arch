@@ -26,7 +26,7 @@ func (p psqlBarangRepository) GetById(id uint) (res *domain.Barang, err error) {
 
 func (p psqlBarangRepository) GetByEventId(eventId uint) (res []domain.Barang, err error) {
 	barang := make([]domain.Barang, 0)
-	err = p.DB.Where("event_id = ?", eventId).Find(&barang).Error
+	err = p.DB.Where("event_id = ?", eventId).Order("Lot").Find(&barang).Error
 	if err != nil {
 		return nil, err
 	}

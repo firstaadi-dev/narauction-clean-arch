@@ -97,5 +97,5 @@ func NewBarangHandler(r *echo.Echo, us domain.BarangUsecase) {
 	r.POST("/barang", handler.AddBarang, middleware.BasicAuth(utils.BasicAuth))
 	r.PUT("/barang/:id", handler.EditBarang, middleware.BasicAuth(utils.BasicAuth))
 	r.DELETE("/barang/:id", handler.DeleteBarang, middleware.BasicAuth(utils.BasicAuth))
-	r.GET("/event/barang/:eventId", handler.GetBarangByEventId)
+	r.GET("/barang/event/:eventId", handler.GetBarangByEventId)
 }
